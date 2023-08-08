@@ -29,11 +29,16 @@ const OrderSchema = new mongoose.Schema({
     total_cart: {
         type: String,
     },
+    already_check: {
+        type: String,
+        default: "Chưa xử lý"
+    },
     methodPayment: {
         type: String,
         required: true,
         default: "Thanh toán khi nhận hàng"
-    }
+    },
+   
 },
     {
         timestamps: true

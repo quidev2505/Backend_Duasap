@@ -11,8 +11,25 @@ const getOrder = async (req, res) => {
 const createOrder = async (req, res) => {
     const data_from_user = req.body;
 
+
     if (data_from_user) {
         const new_order = await Order.create(data_from_user);
+        if (new_order)
+            res.status(202).json(new_order)
+        else
+            throw new Error('Cannot create DB!');
+    } else {
+        res.status.json('None of information receive !')
+    }
+
+}
+
+const updateOrder = async (req, res) => {
+    const data_from_user = req.body;
+    const id_order = req.params;
+
+    if (data_from_user) {
+        const new_order = await Order.findByIdAndUpdate(id_order.id, data_from_user);
         if (new_order)
             res.status(202).json(new_order)
         else
@@ -65,4 +82,4 @@ const findOrder = async (req, res) => {
 }
 
 
-module.exports = { getOrder, createOrder, deleteOrder, findOrder }
+module.exports = { getOrder, createOrder, deleteOrder, findOrder, updateOrder }
