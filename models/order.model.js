@@ -20,7 +20,7 @@ const OrderSchema = new mongoose.Schema({
     },
     note: {
         type: String,
-        required: true
+        default: "Không có ghi chú thêm !"
     },
     cart: {
         type: Array,
@@ -38,7 +38,10 @@ const OrderSchema = new mongoose.Schema({
         required: true,
         default: "Thanh toán khi nhận hàng"
     },
-   
+    flag:{
+        type:String,
+        default: '1'
+    }
 },
     {
         timestamps: true
