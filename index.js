@@ -35,12 +35,6 @@ app.use(express.urlencoded({ extended: true }))
 //API
 app.use('/api/order', routerOrder);
 
-//Static file
-app.use(express.static(path.join(__dirname, '../frontend/build')))
-
-app.get('*', function(req, res){
-    res.sendFile(path.join(__dirname, "../frontend/build/index.html"))
-})
 
 const PORT = 5000 || process.env.PORT
 
