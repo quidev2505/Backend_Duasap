@@ -16,14 +16,15 @@ const connectionParams = {
     useUnifiedTopology: true
 }
 
-mongoose.connect(url, connectionParams)
-    .then(() => {
-        console.log('Connected to the database ')
-    })
-    .catch((err) => {
-        console.error(`Fail to connect to the database ${err}`);
-    })
-
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(url, connectionParams);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
 
 const app = express()
 
@@ -43,10 +44,9 @@ app.get('*', function(req, res){
 
 const PORT = 5000 || process.env.PORT
 
-app.get('/', (req, res) =>{
-    res.status(202).json('ok cac ban')
-})
 
-app.listen(PORT, ()=>{
+connectDB().then(() => {
+    app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`)
+	})
 })
