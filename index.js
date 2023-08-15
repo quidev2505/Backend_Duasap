@@ -36,6 +36,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/order', routerOrder);
 
 
+app.get('/',(req, res)=>{
+	res.send('ok')
+})
+
 const PORT = 5000 || process.env.PORT
 
 
